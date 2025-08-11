@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="Root"
+run/main_scene="uid://cx8r014q04wys"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
