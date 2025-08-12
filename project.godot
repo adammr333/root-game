@@ -13,4 +13,14 @@ config_version=5
 config/name="Root"
 run/main_scene="uid://cx8r014q04wys"
 config/features=PackedStringArray("4.4", "Forward Plus")
+run/max_fps=60
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/window_width_override=1280
+window/size/window_height_override=720
+window/stretch/mode="viewport"
+window/stretch/scale_mode="integer"
