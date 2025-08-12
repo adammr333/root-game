@@ -6,6 +6,8 @@ extends Node2D
 
 var windowWidth: float = DisplayServer.window_get_size().x
 var windowHeight: float = DisplayServer.window_get_size().y
+var rootSpriteGrowth: Resource = load("res://scenes/new_root_growth.tscn")
+var newRootGrowthIndex: int = get_child_count() - 1
 
 
 func _ready() -> void:
@@ -17,9 +19,18 @@ func _ready() -> void:
 	#camera.limit_right = windowWidth
 	#camera.limit_top = windowHeight - windowHeight
 	#camera.limit_bottom = windowHeight
+	print_tree()
 	pass
 
 
 func _process(delta: float) -> void:
 	#get_window().size = Vector2(640, 360)
+	pass
+
+
+func grow_root():
+	var newRootGrowth = rootSpriteGrowth.instantiate()
+	#call_deferred("add_child", newRootGrowth)
+	add_child(newRootGrowth)
+	#print("Grow Root")
 	pass
