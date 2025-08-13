@@ -1,37 +1,22 @@
 [gd_scene load_steps=4 format=3 uid="uid://c1kit4wd0qp61"]
 
 [ext_resource type="Script" uid="uid://dkmyo463pncg5" path="res://scripts/root_tip.gd" id="1_km8nn"]
+[ext_resource type="Texture2D" uid="uid://blhj58bsemo7y" path="res://assets/root_sprites/root-tip-straight.png" id="2_km8nn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d000s"]
 size = Vector2(21, 28)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_km8nn"]
-radius = 2.0
-
 [node name="RootTip" type="CharacterBody2D"]
 script = ExtResource("1_km8nn")
 
-[node name="RootSprite" type="ColorRect" parent="."]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -12.0
-offset_right = 40.0
-offset_bottom = 12.0
-grow_vertical = 2
-color = Color(0.329412, 0.729412, 0, 1)
+[node name="RootSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_km8nn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(32, 0)
 shape = SubResource("RectangleShape2D_d000s")
 
-[node name="GrowPoint" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GrowPoint"]
-shape = SubResource("CircleShape2D_km8nn")
-
 [node name="GrowTimer" type="Timer" parent="."]
 wait_time = 0.5
 
-[connection signal="area_entered" from="GrowPoint" to="." method="_on_grow_point_area_entered"]
 [connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]

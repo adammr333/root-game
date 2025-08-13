@@ -15,4 +15,3 @@ color = Color(0.692285, 0.415016, 0.23228, 1)
 position = Vector2(640, 360)
 
 [node name="RootCamera" type="Camera2D" parent="RootTip"]
-zoom = Vector2(2, 2)
