@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://blhj58bsemo7y" path="res://assets/root_sprites/root-tip-straight.png" id="2_km8nn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d000s"]
-size = Vector2(21, 28)
+size = Vector2(188.5, 62)
 
 [node name="RootTip" type="CharacterBody2D"]
 script = ExtResource("1_km8nn")
@@ -13,10 +13,11 @@ script = ExtResource("1_km8nn")
 texture = ExtResource("2_km8nn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(32, 0)
+position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_d000s")
 
 [node name="GrowTimer" type="Timer" parent="."]
 wait_time = 0.5
+one_shot = true
 
 [connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]

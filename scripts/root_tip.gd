@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name RootTip
 
 @onready var game: Node = get_tree().get_root().get_node("Game")
 @onready var rootSprite: Node = $RootSprite
@@ -6,7 +7,7 @@ extends CharacterBody2D
 
 var direction: float
 var speed: int = 100
-var pointing: String = "Straight"
+var pointing: int = 0
 
 var rootTipSprite: Array = [
 	"res://assets/root_sprites/root-tip-straight.png", #0
@@ -20,6 +21,7 @@ var rootTipSprite: Array = [
 	"res://assets/root_sprites/root-tip-diagonal-down-diagonal-up.png" #8
 ]
 
+
 func _ready() -> void:
 	growTimer.start()
 	pass
@@ -31,31 +33,71 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
-		match game.newRootSprite:
-			"Straight":
-				game.newRootSprite = "Diagonal Up"
-			"Diagonal Up":
-				game.newRootSprite = "Diagonal Up"
-			"Diagonal Down":
-				game.newRootSprite = "Straight"
-		print(game.newRootSprite)
-		if rotation_degrees != -45:
-			#rotation_degrees -= 45
-			direction += -speed
+		pivotUp()
 	if event.is_action_pressed("ui_down"):
-		match game.newRootSprite:
-			"Straight":
-				game.newRootSprite = "Diagonal Down"
-			"Diagonal Up":
-				game.newRootSprite = "Straight"
-			"Diagonal Down":
-				game.newRootSprite = "Diagonal Down"
-		print(game.newRootSprite)
-		if rotation_degrees != 45:
-			#rotation_degrees += 45
-			direction += speed
-	#if event.is_action_pressed("space"):
-		#growTimer.start()
+		pivotDown()
+	if event.is_action_pressed("space"):
+		growTimer.start()
+	pass
+
+
+func pivotUp():
+	match game.newRootSprite:
+		"Straight":
+			game.newRootSprite = "Diagonal Up"
+		"Diagonal Up":
+			game.newRootSprite = "Diagonal Up"
+		"Diagonal Down":
+			game.newRootSprite = "Straight"
+	match game.previousRootSprite:
+		"Straight":
+			if pointing == 0:
+				rootSprite.texture = load(rootTipSprite[3])
+			if pointing == 1:
+				rootSprite.texture = load(rootTipSprite[0])
+		"Diagonal Up":
+			if pointing == 0:
+				rootSprite.texture = load(rootTipSprite[1])
+			if pointing == 1:
+				rootSprite.texture = load(rootTipSprite[5])
+		"Diagonal Down":
+			if pointing == 0:
+				rootSprite.texture = load(rootTipSprite[8])
+			if pointing == 1:
+				rootSprite.texture = load(rootTipSprite[6])
+	if pointing > -1:
+		pointing -= 1
+		direction -= speed
+	pass
+
+
+func pivotDown():
+	match game.newRootSprite:
+		"Straight":
+			game.newRootSprite = "Diagonal Down"
+		"Diagonal Up":
+			game.newRootSprite = "Straight"
+		"Diagonal Down":
+			game.newRootSprite = "Diagonal Down"
+	match game.previousRootSprite:
+		"Straight":
+			if pointing == 0:
+				rootSprite.texture = load(rootTipSprite[4])
+			if pointing == -1:
+				rootSprite.texture = load(rootTipSprite[0])
+		"Diagonal Up":
+			if pointing == 0:
+				rootSprite.texture = load(rootTipSprite[7])
+			if pointing == -1:
+				rootSprite.texture = load(rootTipSprite[5])
+		"Diagonal Down":
+			if pointing == 0:
+				rootSprite.texture = load(rootTipSprite[2])
+			if pointing == -1:
+				rootSprite.texture = load(rootTipSprite[6])
+	if pointing < 1:
+		pointing += 1
+		direction += speed
 	pass
 
 
@@ -69,4 +111,5 @@ func _on_grow_timer_timeout() -> void:
 			rootSprite.texture = load(rootTipSprite[1])
 		"Diagonal Down":
 			rootSprite.texture = load(rootTipSprite[2])
+	print(position)
 	pass
