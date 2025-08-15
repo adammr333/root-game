@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7me0os1721kp"]
+[gd_scene load_steps=19 format=3 uid="uid://7me0os1721kp"]
 
 [ext_resource type="Texture2D" uid="uid://cjbogjtd8cqv3" path="res://assets/hand.png" id="1_pk062"]
 [ext_resource type="Script" uid="uid://byacvaunokgpm" path="res://scripts/opening.gd" id="1_y6ged"]
@@ -32,6 +32,63 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fvetl"]
+font_size = 96
+font_color = Color(0.4, 0.219608, 0.192157, 1)
+
+[sub_resource type="Animation" id="Animation_v10qa"]
+resource_name = "label"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-0.0872665, 0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_sc7q2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0872665]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_7f2m3"]
+_data = {
+&"RESET": SubResource("Animation_sc7q2"),
+&"label": SubResource("Animation_v10qa")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_jo2c7"]
+font_size = 36
+font_color = Color(0.4, 0.219608, 0.192157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_drfco"]
+font_size = 24
+font_color = Color(0.4, 0.219608, 0.192157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_v10qa"]
+font_size = 24
+font_color = Color(0.4, 0.219608, 0.192157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_y6ged"]
+font_size = 60
 
 [sub_resource type="Animation" id="Animation_drfco"]
 length = 0.001
@@ -83,10 +140,82 @@ tracks/3/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 360)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BlackScreen:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackScreen/TheSeedHasBeen:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackScreen/HelpItBloom:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Label4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_jo2c7"]
 resource_name = "opening"
-length = 5.0
+length = 12.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -109,7 +238,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 1, 5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [false, true, false]
+"values": [false, true, true]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -135,6 +264,78 @@ tracks/3/keys = {
 "update": 1,
 "values": [Vector2(1, 1), Vector2(0.535, 0.535), Vector2(0.25, 0.25)]
 }
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Camera2D:zoom")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 2, 3, 4, 5, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(1, 1), Vector2(1, 1), Vector2(2, 2), Vector2(3, 3), Vector2(6, 6), Vector2(1, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Camera2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 2, 3, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2(640, 360), Vector2(640, 360), Vector2(656, 453), Vector2(640, 360)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("BlackScreen:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("BlackScreen/TheSeedHasBeen:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("BlackScreen/HelpItBloom:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 10),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Label4:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [false, true, false]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_v10qa"]
 _data = {
@@ -145,6 +346,13 @@ _data = {
 [node name="Opening" type="Node2D"]
 script = ExtResource("1_y6ged")
 
+[node name="Ground" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.203922, 0.639216, 0.258824, 1)
+
 [node name="Hand" type="AnimatedSprite2D" parent="."]
 position = Vector2(811, 351)
 scale = Vector2(1.49, 1.49)
@@ -154,7 +362,105 @@ sprite_frames = SubResource("SpriteFrames_jo2c7")
 visible = false
 position = Vector2(775, 453)
 
+[node name="Title" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="Title"]
+offset_left = 29.0
+offset_top = 61.609
+offset_right = 707.0
+offset_bottom = 193.609
+rotation = -0.0872665
+pivot_offset = Vector2(335, 75)
+text = "Root To Bloom"
+label_settings = SubResource("LabelSettings_fvetl")
+horizontal_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Title/Label"]
+libraries = {
+&"": SubResource("AnimationLibrary_7f2m3")
+}
+
+[node name="Label2" type="Label" parent="Title"]
+offset_left = 161.0
+offset_top = 198.609
+offset_right = 587.0
+offset_bottom = 248.609
+text = "A Game by Adam Rogers"
+label_settings = SubResource("LabelSettings_jo2c7")
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Title"]
+offset_left = 132.0
+offset_top = 334.0
+offset_right = 628.0
+offset_bottom = 384.0
+text = "Press Up to Open Your Hand"
+label_settings = SubResource("LabelSettings_drfco")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="."]
+visible = false
+offset_left = 132.0
+offset_top = 334.0
+offset_right = 628.0
+offset_bottom = 384.0
+text = "Press Down to Drop the Seed"
+label_settings = SubResource("LabelSettings_v10qa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="BlackScreen" type="ColorRect" parent="."]
+visible = false
+offset_right = 1280.0
+offset_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0, 0, 0, 1)
+
+[node name="TheSeedHasBeen" type="Label" parent="BlackScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -84.5
+offset_right = 227.0
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "THE SEED HAS BEEN PLANTED"
+label_settings = SubResource("LabelSettings_y6ged")
+horizontal_alignment = 1
+
+[node name="HelpItBloom" type="Label" parent="BlackScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -103.0
+offset_top = -24.5
+offset_right = 103.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "
+HELP IT BLOOM"
+label_settings = SubResource("LabelSettings_y6ged")
+horizontal_alignment = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 &"": SubResource("AnimationLibrary_v10qa")
 }
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

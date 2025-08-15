@@ -1,5 +1,9 @@
 extends Node2D
 
+#colors:
+#green: 34a342
+#brown: 663831
+
 @onready var ground: Node = $Ground
 @onready var rootTip: Node = $RootTip
 @onready var camera: Node = $RootTip/RootCamera
