@@ -2,17 +2,19 @@ extends Area2D
 
 @onready var animPlayer: Node = $AnimationPlayer
 @onready var game: Node = get_tree().get_root().get_node("Game")
+@onready var rootTip: Node = get_tree().get_root().get_node("Game/RootTip")
 
 var spawnPosition: int
 
 var spawnPositionArray: Array = [-200, -100, 0, 100, 200]
 
-signal collect
-
 
 func _ready() -> void:
-	spawnPosition = randi_range(0, 4)
-	position = get_node("/root/Game/RootTip").global_position + Vector2(600.0, spawnPositionArray[spawnPosition])
+	if rootTip.tutorial:
+		position = Vector2(1131.0, 360.0)
+	else:
+		spawnPosition = randi_range(0, 4)
+		position = get_node("/root/Game/RootTip").global_position + Vector2(600.0, spawnPositionArray[spawnPosition])
 
 
 func _on_body_entered(body: Node2D) -> void:

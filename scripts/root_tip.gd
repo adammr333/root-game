@@ -4,10 +4,16 @@ class_name RootTip
 @onready var game: Node = get_tree().get_root().get_node("Game")
 @onready var rootSprite: Node = $RootSprite
 @onready var growTimer: Node = $GrowTimer
+@onready var tutorialLabel: Node = $TutorialText
+@onready var animPlayer: Node = $AnimationPlayer
 
 var direction: float
 var speed: int = 100
 var pointing: int = 0
+var tutorial: bool
+var tutorialCounter: int
+var tutorialStep: int
+var canInput: bool
 
 var rootTipSprite: Array = [
 	"res://assets/root_sprites/root-tip-straight.png", #0
@@ -23,6 +29,11 @@ var rootTipSprite: Array = [
 
 
 func _ready() -> void:
+	
+	tutorial = true
+	canInput = false
+	tutorialStep = 0
+	tutorialLabel.text = "The root will continuously grow forward."
 	growTimer.start()
 	pass
 
@@ -33,11 +44,26 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_up"):
-		pivotUp()
+		if canInput && tutorialStep != 2 && tutorialStep != 3:
+			pivotUp()
+			if tutorial:
+				if tutorialStep == 1:
+					growTimer.start()
+					canInput = false
+				if tutorialStep == 4:
+					growTimer.start()
+					tutorialLabel.visible = false
+					tutorialStep += 1
+					tutorial = false
 	if event.is_action_pressed("ui_down"):
-		pivotDown()
-	if event.is_action_pressed("space"):
-		growTimer.start()
+		if canInput && tutorialStep != 1 && tutorialStep != 4:
+			pivotDown()
+			if tutorial:
+				if tutorialStep == 2 || tutorialStep == 3:
+					growTimer.start()
+					canInput = false
+	#if event.is_action_pressed("space"):
+		#growTimer.start()
 	pass
 
 
@@ -102,6 +128,28 @@ func pivotDown():
 
 
 func _on_grow_timer_timeout() -> void:
+	if tutorial:
+		tutorialCounter += 1
+		if tutorialCounter == 2:
+			growTimer.stop()
+			canInput = true
+			tutorialStep += 1
+			tutorialLabel.text += " Press UP to pivot the root up."
+		if tutorialCounter == 4:
+			growTimer.stop()
+			canInput = true
+			tutorialStep += 1
+			tutorialLabel.text = "Press DOWN to pivot the root back straight."
+		if tutorialCounter == 6:
+			growTimer.stop()
+			canInput = true
+			tutorialStep += 1
+			tutorialLabel.text = "Press DOWN again to pivot the root down."
+		if tutorialCounter == 8:
+			growTimer.stop()
+			canInput = true
+			tutorialStep += 1
+			tutorialLabel.text = "Guide the root to the food. Press UP again to pivot the root back straight."
 	game.grow_root()
 	position += Vector2(speed, direction)
 	match game.previousRootSprite:

@@ -9,6 +9,7 @@ extends Node2D
 @onready var camera: Node = $RootTip/RootCamera
 @onready var foodContainer: Node = $FoodContainer
 @onready var animPlayer: Node = $AnimationPlayer
+@onready var blackScreen: Node = $BlackScreen
 
 var windowWidth: float = DisplayServer.window_get_size().x
 var windowHeight: float = DisplayServer.window_get_size().y
@@ -25,18 +26,21 @@ var witherCounter: int = -5
 
 func _ready() -> void:
 	#get_window().size = Vector2(640, 360)
-	ground.size = Vector2(windowWidth, windowHeight)
-	print(ground.size)
+	#ground.size = Vector2(windowWidth, windowHeight)
+	#print(ground.size)
 	#rootTip.global_position = Vector2(windowWidth / 2, windowHeight / 2)
 	#camera.limit_left = windowWidth - windowWidth
 	#camera.limit_right = windowWidth
 	#camera.limit_top = windowHeight - windowHeight
 	#camera.limit_bottom = windowHeight
-	pass 
+	$Seed.get_child(0).frame = 1
+	pass
 
 
 func _process(delta: float) -> void:
-	if foodCount == 3:
+	if foodCount == 10:
+		foodCount = 0
+		rootTip.growTimer.stop()
 		animPlayer.play("game_win")
 	match previousRootSprite:
 		"Straight":
@@ -86,6 +90,11 @@ func grow_root():
 	print("Wither: " + str(witherCounter))
 	if witherCounter == 10:
 		print("The Flower Has Withered")
+		foodCount = 0
+		rootTip.growTimer.stop()
+		blackScreen.global_position = rootTip.global_position
+		blackScreen.visible = true
+	ground.scale += Vector2(1.0, 1.0)
 	pass
 
 

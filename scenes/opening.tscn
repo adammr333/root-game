@@ -37,6 +37,21 @@ animations = [{
 font_size = 96
 font_color = Color(0.4, 0.219608, 0.192157, 1)
 
+[sub_resource type="Animation" id="Animation_sc7q2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [-0.0872665]
+}
+
 [sub_resource type="Animation" id="Animation_v10qa"]
 resource_name = "label"
 length = 2.0
@@ -52,21 +67,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [-0.0872665, 0.0872665]
-}
-
-[sub_resource type="Animation" id="Animation_sc7q2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:rotation")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [-0.0872665]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_7f2m3"]
@@ -215,7 +215,7 @@ tracks/9/keys = {
 
 [sub_resource type="Animation" id="Animation_jo2c7"]
 resource_name = "opening"
-length = 12.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -307,7 +307,7 @@ tracks/7/path = NodePath("BlackScreen/TheSeedHasBeen:visible")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0, 8),
+"times": PackedFloat32Array(0, 7),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -319,7 +319,7 @@ tracks/8/path = NodePath("BlackScreen/HelpItBloom:visible")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
-"times": PackedFloat32Array(0, 10),
+"times": PackedFloat32Array(0, 8),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -370,8 +370,8 @@ offset_top = 61.609
 offset_right = 707.0
 offset_bottom = 193.609
 rotation = -0.0872665
-pivot_offset = Vector2(335, 75)
-text = "Root To Bloom"
+pivot_offset = Vector2(367.49, 72.475)
+text = "Feed the Flower"
 label_settings = SubResource("LabelSettings_fvetl")
 horizontal_alignment = 1
 

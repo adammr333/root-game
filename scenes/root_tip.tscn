@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1kit4wd0qp61"]
+[gd_scene load_steps=6 format=3 uid="uid://c1kit4wd0qp61"]
 
 [ext_resource type="Script" uid="uid://dkmyo463pncg5" path="res://scripts/root_tip.gd" id="1_km8nn"]
 [ext_resource type="Texture2D" uid="uid://blhj58bsemo7y" path="res://assets/root_sprites/root-tip-straight.png" id="2_km8nn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d000s"]
 size = Vector2(188.5, 62)
+
+[sub_resource type="Animation" id="Animation_km8nn"]
+resource_name = "tutorial"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_51dd4"]
+_data = {
+&"tutorial": SubResource("Animation_km8nn")
+}
 
 [node name="RootTip" type="CharacterBody2D"]
 script = ExtResource("1_km8nn")
@@ -17,7 +25,11 @@ position = Vector2(0.25, 0)
 shape = SubResource("RectangleShape2D_d000s")
 
 [node name="GrowTimer" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
+wait_time = 0.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_51dd4")
+}
 
 [connection signal="timeout" from="GrowTimer" to="." method="_on_grow_timer_timeout"]
